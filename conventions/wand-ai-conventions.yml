@@ -1,0 +1,92 @@
+generated: '2026-09-04'
+method: probed
+source: >-
+  Observed on the only public Wand surfaces that answer — https://status.wand.ai/api/* and
+  https://auth.wand.ai/realms/master/* — on 2026-09-04. There is no OpenAPI and no developer
+  documentation to derive from.
+name: Wand API conventions
+description: >-
+  Wand publishes no API conventions, no developer reference, and no contract. Everything recorded
+  here was observed on the two public surfaces that respond. The read-only status API is the only
+  Wand-authored HTTP surface reachable without credentials, so most runtime-semantics dimensions are
+  either `none` (the surface exists and does not implement them) or `unknown` (the surface that
+  would implement them is gated). Nothing below is inferred from marketing prose.
+scope_of_observation:
+  observed:
+  - https://status.wand.ai (read-only JSON status API, anonymous)
+  - https://auth.wand.ai/realms/master (Keycloak OIDC, anonymous discovery only)
+  not_observable:
+  - https://api.wand.ai (HTTP 503 on every probed path; no public documentation)
+authentication:
+  style: >-
+    OpenID Connect / OAuth 2.0 bearer tokens issued by Keycloak at auth.wand.ai for the platform;
+    the public status API requires no credentials at all.
+  see: authentication/wand-ai-authentication.yml
+idempotency:
+  coverage: none
+  scope: []
+  mechanism: null
+  header: null
+  retention: null
+  note: >-
+    No idempotency mechanism is documented or observable. The only public Wand HTTP surface is
+    read-only, so there is no mutating operation on which replay protection could be demonstrated,
+    and no documentation describes one for the gated platform API. Recorded as `none` rather than
+    `na` because Wand's platform demonstrably has a write surface (task orchestration, agent
+    execution) — it is simply undocumented.
+reversibility:
+  grade: undocumented
+  applicable: true
+  reversal_operations: []
+  windows: []
+  note: >-
+    Wand's platform creates, runs and stands down autonomous agents and executes multi-step business
+    processes — the write surface where reversibility matters most — but no cancel, undo, rollback,
+    restore or reversal operation is documented anywhere public, and no window is stated. No window
+    has been asserted here because none is published. This is a gap in the provider's public
+    material, not a finding that reversal is impossible.
+dry_run_mode:
+  supported: unknown
+  note: Not documented. Not observable on the read-only public surface.
+pagination:
+  style: none
+  note: >-
+    The status API returns complete unpaginated collections — /api/services returns all 22 services
+    and /api/products all 4 in a single response, with no cursor, offset, limit or link fields.
+error_envelope:
+  format: unstructured
+  problem_json: false
+  note: >-
+    Observed 404s from status.wand.ai return an HTML Next.js page rather than JSON. Keycloak returns
+    {"error": "...", "error_description": "..."} (the OAuth 2.0 error shape, RFC 6749 §5.2), not
+    RFC 9457 application/problem+json. api.wand.ai returns Google front-end HTML for its 503s.
+rate_limit_signaling:
+  headers_observed: []
+  note: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After headers were returned on any anonymous request to
+    status.wand.ai or auth.wand.ai. See rate-limits/wand-ai-rate-limits.yml.
+request_id_tracing:
+  header: null
+  note: >-
+    No request-id, trace-id or correlation-id response header was observed. Cloudflare's cf-ray
+    header is present on all hosts, but that is the CDN's, not Wand's.
+versioning:
+  in_url: false
+  in_header: false
+  note: >-
+    The status API is unversioned (/api/status, not /api/v1/status — /api/v1/status returns 404).
+    Keycloak realm paths are unversioned by design.
+expansion_and_sparse_fields:
+  supported: false
+  note: Not offered on the observed surface.
+metadata:
+  supported: unknown
+content_negotiation:
+  json: true
+  note: All observed Wand JSON endpoints return application/json without a vendor media type.
+cross_links:
+  authentication: authentication/wand-ai-authentication.yml
+  scopes: scopes/wand-ai-scopes.yml
+  lifecycle: lifecycle/wand-ai-lifecycle.yml
+  conformance: conformance/wand-ai-conformance.yml
+  rate_limits: rate-limits/wand-ai-rate-limits.yml

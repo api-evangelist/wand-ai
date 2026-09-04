@@ -1,0 +1,44 @@
+generated: '2026-09-04'
+method: probed
+source: >-
+  Response headers observed on https://status.wand.ai/api/status and
+  https://auth.wand.ai/realms/master/.well-known/openid-configuration on 2026-09-04, plus a search
+  of https://wand.ai and https://wand.ai/llms.txt for published limits.
+name: Wand rate limits
+description: >-
+  No rate limits are documented and none are signalled at runtime. Neither of the two public Wand
+  HTTP surfaces returns any RateLimit-*, X-RateLimit-* or Retry-After header, and there is no
+  developer documentation in which a limit could be published. An agent calling Wand has no way to
+  learn its budget before it is cut off.
+limit_count: 0
+limits: []
+response_headers:
+  observed: []
+  standard_ratelimit_headers: false
+  retry_after: false
+  exhaustion_status_code: unknown
+evidence:
+- url: https://status.wand.ai/api/status
+  status: 200
+  headers_present:
+  - cache-control
+  - strict-transport-security
+  - x-content-type-options
+  - x-frame-options
+  - permissions-policy
+  - referrer-policy
+  - vary
+  rate_limit_headers: none
+- url: https://auth.wand.ai/realms/master/.well-known/openid-configuration
+  status: 200
+  rate_limit_headers: none
+- url: https://wand.ai/llms.txt
+  status: 200
+  note: >-
+    Declares an allowed-usage policy for AI bots ("do not scrape or automate interactions" on login
+    and demo-booking areas, no commercial redistribution of extracted data) but states no numeric
+    rate limit.
+note: >-
+  Cloudflare fronts every wand.ai host, so an undisclosed edge rate limit almost certainly exists;
+  it is simply not published or signalled. api.wand.ai could not be tested — it returned HTTP 503
+  on every probe.

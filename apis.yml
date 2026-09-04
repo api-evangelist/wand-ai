@@ -1,23 +1,179 @@
 aid: wand-ai
 name: Wand
-description: 'Wand is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Wand (Wand Synthesis AI, Inc.) is a Palo Alto, California enterprise software company, founded in
+  2022 by Rotem Alaluf, that builds what it calls agentic labor infrastructure — an operating system
+  for hybrid workforces in which AI agents are managed, executed and created as trusted team members
+  alongside human employees. Its four published product areas are Process Agentizer (workforce
+  automation, messaging and task orchestration), Collab (collaboration, chat and content ingestion),
+  Governance (organization management and metrics) and Integration Hub (economy, billing and
+  knowledge-vault integrations), offered on-premise, in a private cloud, or hosted. Wand publishes
+  no developer portal, API reference or machine-readable contract; its platform API — named "AI
+  Workforce API" in its own status feed — sits behind an enterprise sales gate at api.wand.ai. The
+  public surfaces reached here are a JSON status API, a Keycloak OpenID Connect discovery document,
+  a security.txt, and an llms.txt.
+image: https://wand.ai/hubfs/logo.png
 url: https://raw.githubusercontent.com/api-evangelist/wand-ai/refs/heads/main/apis.yml
-x-type: company
-x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-09-04'
 modified: '2026-09-04'
 tags:
 - Company
-apis: []
+- Artificial Intelligence
+- AI Agents
+- Agentic AI
+- Enterprise Software
+- Workforce Automation
+- Orchestration
+- Process Automation
+- Collaboration
+- Governance
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: wand-ai:status-api
+  name: Wand Status API
+  image: https://wand.ai/hubfs/logo.png
+  description: >-
+    A public, unauthenticated JSON API served by the Wand platform status page. It reports overall
+    platform health, the four Wand products and the twenty-two production services behind them, plus
+    thirty-day uptime series. Observed live and undocumented — Wand publishes no reference page or
+    machine-readable contract for it; the endpoints below were established by probe on 2026-09-04.
+  humanURL: https://status.wand.ai/
+  baseURL: https://status.wand.ai
+  tags:
+  - Status
+  - Monitoring
+  - Uptime
+  - Observability
+  properties:
+  - type: StatusPage
+    url: https://status.wand.ai/
+  - type: Lifecycle
+    url: lifecycle/wand-ai-lifecycle.yml
+- aid: wand-ai:identity
+  name: Wand Identity (OpenID Connect)
+  image: https://wand.ai/hubfs/logo.png
+  description: >-
+    Wand runs Keycloak at auth.wand.ai as the identity provider for its platform. The master realm
+    serves an anonymous OpenID Connect discovery document declaring the authorization, token,
+    userinfo, introspection, revocation, device-authorization and JWKS endpoints, the supported
+    grant types and response modes, and the supported scopes. Client registration and every token
+    endpoint require credentials; only the discovery metadata and JWKS are public.
+  humanURL: https://auth.wand.ai/realms/master/.well-known/openid-configuration
+  baseURL: https://auth.wand.ai/realms/master
+  tags:
+  - Authentication
+  - Identity
+  - OpenID Connect
+  - OAuth
+  - SSO
+  properties:
+  - type: OpenIDConnect
+    url: well-known/wand-ai-openid-configuration.json
+  - type: Authentication
+    url: authentication/wand-ai-authentication.yml
+  - type: OAuthScopes
+    url: scopes/wand-ai-scopes.yml
+- aid: wand-ai:ai-workforce-api
+  name: Wand AI Workforce API
+  image: https://wand.ai/hubfs/logo.png
+  description: >-
+    The platform API behind Wand's Process Agentizer product, named "AI Workforce API" in Wand's own
+    machine-readable status feed at https://status.wand.ai/api/services. The host api.wand.ai
+    resolves inside Wand's Cloudflare zone and serves Wand's security.txt, but every probed path
+    returned an HTTP 503 from a Google front end on 2026-09-04 and Wand publishes no developer
+    portal, API reference, OpenAPI, SDK or pricing for it. Recorded as a real but sales-gated and
+    undocumented surface; no contract has been captured and none has been authored.
+  humanURL: https://wand.ai/product-page
+  baseURL: https://api.wand.ai
+  tags:
+  - AI Agents
+  - Workforce Automation
+  - Orchestration
+  - Task Management
+  - Messaging
+  properties:
+  - type: StatusPage
+    url: https://status.wand.ai/
+  - type: Lifecycle
+    url: lifecycle/wand-ai-lifecycle.yml
+  - type: Authentication
+    url: authentication/wand-ai-authentication.yml
 common:
+- type: DomainSecurity
+  url: security/wand-ai-domain-security.yml
 - type: Website
-  url: https://www.hiive.com/securities/wand-ai-stock
+  url: https://wand.ai/
+- type: Blog
+  url: https://wand.ai/blog
+- type: TermsOfService
+  url: https://wand.ai/tc
+- type: PrivacyPolicy
+  url: https://wand.ai/privacy-policy
+- type: GitHubOrganization
+  url: https://github.com/wand-ai
+- type: LinkedIn
+  url: https://www.linkedin.com/company/wand1/
+- type: Careers
+  url: https://wand.ai/careers
+- type: ContactUs
+  url: https://wand.ai/book-your-personalized-enterprise-ai-demo
+- type: StatusPage
+  url: https://status.wand.ai/
+- type: LLMsTxt
+  url: llms/wand-ai-llms.txt
+- type: WellKnown
+  url: well-known/wand-ai-well-known.yml
+- type: SecurityTxt
+  url: well-known/wand-ai-security.txt
+- type: Security
+  url: security/wand-ai-vulnerability-disclosure.yml
+- type: Authentication
+  url: authentication/wand-ai-authentication.yml
+- type: OAuthScopes
+  url: scopes/wand-ai-scopes.yml
+- type: Conformance
+  url: conformance/wand-ai-conformance.yml
+- type: Lifecycle
+  url: lifecycle/wand-ai-lifecycle.yml
+- type: Conventions
+  url: conventions/wand-ai-conventions.yml
+- type: Plans
+  url: plans/wand-ai-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/wand-ai-rate-limits.yml
+- type: VulnerabilityDisclosure
+  url: security/wand-ai-vulnerability-disclosure.yml
+x-enrichment:
+  date: '2026-09-04'
+  status: enriched
+  artifacts_added: 15
+  pass: local-v3
+  origin: harvest:secondary-market
+x-coverage:
+  state: covered
+  reason: covered
+  detail: >-
+    Wand publishes no developer portal, API reference or machine-readable contract — its platform
+    "AI Workforce API" sits behind an enterprise demo-booking gate at api.wand.ai, which returned
+    HTTP 503 on every probed path — but four real first-party surfaces were found and captured: an
+    llms.txt, an RFC 9116 security.txt served across its subdomains, a Keycloak OpenID Connect
+    discovery document, and an unauthenticated JSON status API exposing 4 products and 22 services.
+  evidence:
+  - url: https://wand.ai/llms.txt
+    status: 200
+  - url: https://auth.wand.ai/realms/master/.well-known/openid-configuration
+    status: 200
+  - url: https://auth.wand.ai/.well-known/security.txt
+    status: 200
+  - url: https://status.wand.ai/api/services
+    status: 200
+  - url: https://api.wand.ai/openapi.json
+    status: 503
+  - url: https://wand.ai/openapi.json
+    status: 404
+  checked: '2026-09-04'

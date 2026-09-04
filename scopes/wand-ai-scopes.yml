@@ -1,0 +1,55 @@
+generated: '2026-09-04'
+method: probed
+source: https://auth.wand.ai/realms/master/.well-known/openid-configuration
+name: Wand OAuth 2.0 / OpenID Connect scopes
+description: >-
+  The scopes_supported list published by Wand's Keycloak OpenID Connect discovery document. These
+  are Keycloak's standard realm scopes; Wand publishes no scope or permission reference page, and no
+  product-specific scopes (agent, task, workspace, knowledge-vault …) are advertised anywhere
+  public. Descriptions below are the standard OpenID Connect / Keycloak meanings, not Wand prose.
+x-evidence:
+  fetched: '2026-09-04'
+  url: https://auth.wand.ai/realms/master/.well-known/openid-configuration
+  http_status: 200
+issuer: https://auth.wand.ai/realms/master
+docs: null
+docs_note: Wand publishes no scopes or permissions reference page.
+scope_count: 11
+scopes:
+- name: openid
+  description: Required to make the request an OpenID Connect authentication request.
+  standard: OpenID Connect Core 1.0
+- name: profile
+  description: Basic profile claims — name, given_name, family_name, preferred_username.
+  standard: OpenID Connect Core 1.0
+- name: email
+  description: The email and email_verified claims.
+  standard: OpenID Connect Core 1.0
+- name: address
+  description: The address claim.
+  standard: OpenID Connect Core 1.0
+- name: phone
+  description: The phone_number and phone_number_verified claims.
+  standard: OpenID Connect Core 1.0
+- name: offline_access
+  description: Requests a refresh token usable while the user is not present.
+  standard: OpenID Connect Core 1.0
+- name: roles
+  description: Keycloak realm and client role mappings in the token.
+  standard: Keycloak built-in
+- name: web-origins
+  description: Keycloak CORS allowed-origins claim.
+  standard: Keycloak built-in
+- name: microprofile-jwt
+  description: Eclipse MicroProfile JWT claims (upn, groups).
+  standard: MicroProfile JWT RBAC
+- name: acr
+  description: Authentication context class reference claim.
+  standard: OpenID Connect Core 1.0
+- name: picture
+  description: The picture claim.
+  standard: OpenID Connect Core 1.0
+gaps:
+- >-
+  These are identity scopes only. No authorization scopes for the Wand platform API surface are
+  published, so an integrator cannot tell from public material what a token is allowed to do.

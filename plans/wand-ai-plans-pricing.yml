@@ -1,0 +1,27 @@
+generated: '2026-09-04'
+method: searched
+source: >-
+  https://wand.ai/ , https://wand.ai/product-page , https://wand.ai/sitemap.xml (51 URLs, no pricing
+  page), and direct probes of https://wand.ai/pricing and https://wand.ai/plans.
+name: Wand plans and pricing
+description: >-
+  Wand publishes no pricing of any kind. It sells enterprise engagements through a demo-booking
+  form; there is no pricing page, no plan comparison, no free tier, no self-serve sign-up and no
+  usage or seat rates anywhere on the public site or in its llms.txt.
+plan_count: 0
+model: contact-sales
+currency: null
+free_tier: false
+self_serve_signup: false
+plans: []
+evidence:
+- {url: 'https://wand.ai/pricing', status: 404}
+- {url: 'https://wand.ai/plans', status: 404}
+- {url: 'https://wand.ai/sitemap.xml', status: 200, note: '51 URLs, none pricing-related'}
+- {url: 'https://wand.ai/product-page', status: 200, note: 'no pricing stated'}
+- {url: 'https://wand.ai/llms.txt', status: 200, note: 'lists product, blog, terms, careers — no pricing'}
+sales_contact: https://wand.ai/book-your-personalized-enterprise-ai-demo
+note: >-
+  Wand's Integration Hub product includes an "Economy Service" and "Economy Client" (visible in the
+  status feed) which appear to meter and bill agent consumption, but nothing about that pricing
+  model is published.

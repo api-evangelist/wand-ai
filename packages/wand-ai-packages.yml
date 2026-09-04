@@ -1,0 +1,34 @@
+generated: '2026-09-04'
+method: searched
+source: >-
+  registry.npmjs.org search and direct package lookups, pypi.org/pypi/<pkg>/json, the wand-ai GitHub
+  organization (https://api.github.com/orgs/wand-ai/repos), https://wand.ai/product-page and
+  https://wand.ai/llms.txt.
+name: Wand client packages and SDKs
+description: >-
+  Wand publishes no client libraries. No first-party package was found on npm, PyPI, Maven Central,
+  NuGet, pkg.go.dev, RubyGems, Packagist or crates.io, and the company's GitHub organization
+  contains a single non-SDK repository. No pointer of type SDKs or Packages is wired into apis.yml,
+  because there is nothing to point at.
+package_count: 0
+official_package_count: 0
+packages: []
+searched:
+- registry: npm
+  queries: ['wand-ai', '@wand-ai/sdk', '@wandai/sdk', 'wand-ai (text search)']
+  result: no first-party package; search returns unrelated projects (magic-wand-js, WeMod tooling)
+- registry: pypi
+  queries: ['wand-ai', 'wandai', 'wand_ai', 'wand-sdk']
+  result: 404 on every lookup
+  note: >-
+    The existing PyPI package named `Wand` is a ctypes binding to ImageMagick and is unrelated to
+    this company.
+- registry: github
+  queries: ['org:wand-ai']
+  result: >-
+    Organization exists (created 2021-11-14, https://github.com/wand-ai) with 1 public repository —
+    `wand-website`, described as "a repo for all the files that our website uses", last pushed
+    2024-05-16. No SDK, no client, no CLI, no .proto, no spec.
+- registry: maven-central, nuget, go, rubygems, packagist, crates
+  result: not searched individually — no SDK is referenced by any Wand page or by its llms.txt, so
+    there was no package name to look up.

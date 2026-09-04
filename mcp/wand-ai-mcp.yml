@@ -1,0 +1,32 @@
+generated: '2026-09-04'
+method: searched
+source: >-
+  Probes of https://wand.ai/.well-known/ai-plugin.json, https://api.wand.ai/mcp, DNS for mcp.wand.ai,
+  https://wand.ai/llms.txt, the wand-ai GitHub organization, and a web search for a Wand AI MCP
+  server.
+name: Wand MCP server
+description: >-
+  Wand ships no MCP server. This is a recorded absence, not a candidate manifest — there is no
+  OpenAPI, GraphQL schema or documented operation set from which a candidate tool list could be
+  derived without inventing one, so no tools are listed. No MCPServer pointer is wired into
+  apis.yml.
+status: absent
+tools: []
+tool_count: 0
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: probed
+evidence:
+- {url: 'https://api.wand.ai/mcp', status: 503}
+- {url: 'https://wand.ai/.well-known/ai-plugin.json', status: 404}
+- {host: 'mcp.wand.ai', dns: 'NXDOMAIN'}
+- {url: 'https://wand.ai/llms.txt', status: 200, note: 'no MCP endpoint or tool list'}
+- {url: 'https://github.com/wand-ai', status: 200, note: '1 public repo, website assets only'}
+note: >-
+  Notable for a company whose product is agent orchestration: Wand exposes no MCP server, no A2A
+  agent card, and no public tool contract. Its agents consume tools; nothing lets an outside agent
+  consume Wand.

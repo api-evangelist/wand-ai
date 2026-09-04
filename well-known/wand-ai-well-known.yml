@@ -1,0 +1,162 @@
+generated: '2026-09-04'
+method: probed
+source: >-
+  Live GET of the named /.well-known/ path list on every host this record knows — the registrable
+  domain wand.ai and www, the API host api.wand.ai, the identity host auth.wand.ai (plus its Keycloak
+  realm path), the status host status.wand.ai, and the grafana/staging hosts found in DNS.
+name: Wand well-known documents
+description: >-
+  Wand serves an RFC 9116 security.txt from an edge rule that applies to every wand.ai subdomain
+  except the apex, which is a HubSpot-hosted marketing site that 404s the whole /.well-known/ space.
+  The only other real discovery document is the Keycloak OpenID Connect metadata, which lives under
+  the realm path (/realms/master/.well-known/openid-configuration) rather than at the host root.
+  No api-catalog, no ai-plugin.json, no agent card, and no oauth-protected-resource anywhere.
+hosts:
+- host: wand.ai
+  note: HubSpot-hosted marketing site; returns a 404 HTML page for every /.well-known/ path.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: auth.wand.ai
+  note: >-
+    Keycloak. Serves a real security.txt at the host root and real OpenID Connect metadata under the
+    realm path. Realm probing found only `master`; wand, wand-ai, wandai, app, platform and prod all
+    returned Keycloak's `Realm does not exist` JSON.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: wand-ai-security.txt
+    content_type: text/plain
+  - path: /realms/master/.well-known/openid-configuration
+    status: 200
+    file: wand-ai-openid-configuration.json
+    content_type: application/json
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+- host: api.wand.ai
+  note: >-
+    Serves the same security.txt. Every other path returned HTTP 503 from a Google front end
+    ("The service you requested is not available yet"), so absence cannot be distinguished from
+    the backend being down.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: wand-ai-security.txt
+    content_type: text/plain
+  - path: /.well-known/openid-configuration
+    status: 503
+  - path: /.well-known/oauth-authorization-server
+    status: 503
+  - path: /.well-known/oauth-protected-resource
+    status: 503
+  - path: /.well-known/api-catalog
+    status: 503
+  - path: /.well-known/ai-plugin.json
+    status: 503
+  - path: /.well-known/agent-card.json
+    status: 503
+  - path: /.well-known/agent.json
+    status: 503
+- host: status.wand.ai
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: wand-ai-security.txt
+    content_type: text/plain
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: staging.wand.ai
+  note: >-
+    SPA catch-all. Answers HTTP 200 with the same 15,452-byte HTML shell for EVERY /.well-known/
+    path, including agent-card.json and api-catalog. Recorded as a miss, not a hit — none of these
+    200s carries a document.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: wand-ai-security.txt
+    content_type: text/plain
+  - path: /.well-known/agent-card.json
+    status: 200
+    result: html-shell
+  - path: /.well-known/agent.json
+    status: 200
+    result: html-shell
+  - path: /.well-known/api-catalog
+    status: 200
+    result: html-shell
+  - path: /.well-known/openid-configuration
+    status: 200
+    result: html-shell
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    result: html-shell
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    result: html-shell
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    result: html-shell
+- host: grafana.wand.ai
+  note: >-
+    Grafana login. Same SPA catch-all shape — HTTP 200 with a 39,227-byte HTML login page for every
+    /.well-known/ path. Recorded as a miss.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: wand-ai-security.txt
+    content_type: text/plain
+  - path: /.well-known/agent-card.json
+    status: 200
+    result: html-shell
+  - path: /.well-known/agent.json
+    status: 200
+    result: html-shell
+  - path: /.well-known/api-catalog
+    status: 200
+    result: html-shell
+  - path: /.well-known/openid-configuration
+    status: 200
+    result: html-shell
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    result: html-shell
+findings:
+  security_txt: served
+  api_catalog: absent
+  agent_card: absent
+  openid_configuration: served-under-realm-path
+  ai_plugin: absent

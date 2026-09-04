@@ -1,0 +1,108 @@
+generated: '2026-09-04'
+method: probed
+source: >-
+  https://auth.wand.ai/realms/master/.well-known/openid-configuration (definitive, fetched 200);
+  https://wand.ai/product-page and https://wand.ai/llms.txt for the compliance claim.
+name: Wand standards conformance
+description: >-
+  Wand's only machine-readable standards declaration is its OpenID Connect discovery document. Every
+  `conforms: true` below points at a specific field of that document. The SOC 2 entry is a marketing
+  claim, not a certification — Wand's own words are "SOC2-ready", and there is no trust center, no
+  audit report, and no certification page anywhere on wand.ai.
+conformance:
+- id: oidc
+  name: OpenID Connect Discovery 1.0
+  conforms: true
+  evidence: >-
+    https://auth.wand.ai/realms/master/.well-known/openid-configuration returned HTTP 200
+    application/json with issuer, authorization_endpoint, token_endpoint, userinfo_endpoint and
+    jwks_uri present.
+- id: oauth2
+  name: OAuth 2.0 (RFC 6749)
+  conforms: true
+  evidence: >-
+    grant_types_supported includes authorization_code, implicit, refresh_token, password and
+    client_credentials in the discovery document.
+- id: rfc7636-pkce
+  name: PKCE (RFC 7636)
+  conforms: true
+  evidence: 'code_challenge_methods_supported: ["plain","S256"]'
+- id: rfc7009-revocation
+  name: OAuth 2.0 Token Revocation (RFC 7009)
+  conforms: true
+  evidence: revocation_endpoint published in the discovery document.
+- id: rfc7662-introspection
+  name: OAuth 2.0 Token Introspection (RFC 7662)
+  conforms: true
+  evidence: introspection_endpoint published in the discovery document.
+- id: rfc8628-device-grant
+  name: OAuth 2.0 Device Authorization Grant (RFC 8628)
+  conforms: true
+  evidence: >-
+    device_authorization_endpoint published and grant_types_supported includes
+    urn:ietf:params:oauth:grant-type:device_code.
+- id: rfc9126-par
+  name: OAuth 2.0 Pushed Authorization Requests (RFC 9126)
+  conforms: true
+  evidence: >-
+    pushed_authorization_request_endpoint published; require_pushed_authorization_requests is false.
+- id: rfc8705-mtls
+  name: OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens (RFC 8705)
+  conforms: true
+  evidence: >-
+    tls_client_certificate_bound_access_tokens is true, tls_client_auth is an accepted
+    token_endpoint_auth_method, and mtls_endpoint_aliases is published.
+- id: rfc7591-dynamic-client-registration
+  name: OAuth 2.0 Dynamic Client Registration (RFC 7591)
+  conforms: true
+  evidence: registration_endpoint published (Keycloak clients-registrations/openid-connect).
+- id: jarm
+  name: JWT Secured Authorization Response Mode (JARM)
+  conforms: true
+  evidence: 'response_modes_supported includes query.jwt, fragment.jwt, form_post.jwt and jwt.'
+- id: ciba
+  name: OpenID Connect Client-Initiated Backchannel Authentication (CIBA)
+  conforms: true
+  evidence: >-
+    backchannel_authentication_endpoint published and grant_types_supported includes
+    urn:openid:params:grant-type:ciba.
+- id: rfc9116-security-txt
+  name: security.txt (RFC 9116)
+  conforms: true
+  evidence: >-
+    https://auth.wand.ai/.well-known/security.txt returned HTTP 200 text/plain with Contact: and
+    Expires: fields; served on api., status., staging. and grafana.wand.ai as well.
+- id: llms-txt
+  name: llms.txt
+  conforms: true
+  evidence: https://wand.ai/llms.txt returned HTTP 200 text/plain, 3,600 bytes, well-formed.
+- id: fapi
+  name: FAPI 1.0 / 2.0
+  conforms: false
+  evidence: >-
+    Not claimed and not implied. The discovery document advertises implicit and password grants and
+    does not require PAR, both of which FAPI 2.0 forbids.
+- id: openapi
+  name: OpenAPI
+  conforms: false
+  evidence: >-
+    No OpenAPI or Swagger document found on wand.ai, api.wand.ai, status.wand.ai or auth.wand.ai
+    across the full STEP 0b probe list on 2026-09-04.
+- id: rfc9457-problem-details
+  name: Problem Details for HTTP APIs (RFC 9457)
+  conforms: false
+  evidence: >-
+    The public status API returns bare JSON objects and HTML 404 pages, not application/problem+json.
+- id: soc2
+  name: SOC 2
+  conforms: false
+  evidence: >-
+    https://wand.ai/product-page states "SOC2-ready", which is a readiness posture, not an
+    attestation. No SOC 2 report, trust center, or certification page was found.
+domain_standard:
+  applicable: false
+  note: >-
+    Enterprise agent-orchestration has no established domain contract standard (no SCIM/OData/OpenRTB/
+    HL7 analogue), and Wand declares none. Reward-only check — recorded as not applicable rather
+    than failed. Wand publishes no A2A agent card and no MCP server, which are the two emerging
+    interoperability surfaces its market would use.

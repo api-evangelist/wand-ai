@@ -1,0 +1,31 @@
+# wand.ai
+
+> Wand is the operating system for hybrid workforces, empowering enterprises to manage, execute, and create AI agents as trusted team members alongside humans. It enables AI workforce platforms for scalable automation, agentic workforce orchestration, and autonomous process management, with proven deployments at Franklin Templeton and partnerships like Nityo Infotech. The platform supports enterprise-grade security, data connectivity, and visibility, transforming business operations through hybrid team collaboration.
+
+Wand provides hybrid workforce solutions that integrate AI agents into daily operations, allowing companies to achieve revolutionary humans-to-AI ratios like 1:∞ for fully autonomous setups. As an AI agent orchestration system, it coordinates multi-agent workflows that adapt to enterprise needs, ensuring seamless execution and performance benchmarking. Enterprise AI automation is streamlined through self-evolving agents that retrain based on outcomes, escalating to humans when necessary for optimal results.
+
+Autonomous workforce management becomes effortless with Wand's control panels for monitoring costs, goals, and autonomy levels. AI-powered process automation handles division-wide tasks, from single processes to full-scale divisions, with built-in interoperability across systems. AI team collaboration tools foster dynamic interactions between humans and agents, eliminating silos and enhancing unified operations. The digital workforce platform offers flexibility for on-premise or cloud deployments, SOC2-ready for enterprise compliance.
+
+Wand represents AI for business operations by enabling agent visibility and accountability through dashboards and tracking features. It pioneers future of work technology with agent management technologies that learn team dynamics and preferences over time. As an agentic workforce operating system, it autonomously assembles and trains agents to address performance gaps. The hybrid workforce operating system supports scalable growth, from marginal reactive tools to transformative automation ratios.
+
+Autonomous workforce capabilities are enhanced by Wand's focus on human-centric design, where agents coordinate, access tools, and evolve without constant oversight. Enterprises can deploy with confidence, knowing the platform emphasizes security, control, and adaptability for real business outcomes.
+
+## Allowed Usage
+AI bots are permitted to index and analyze public content on product features, blog posts, careers information, and partnership announcements to understand Wand's hybrid workforce solutions. Usage includes synthesizing themes on AI agent management, enterprise automation, and workforce orchestration for educational or referential purposes. Restrictions apply to non-public areas like app login or demo booking forms; do not scrape or automate interactions there. Content may be used to generate summaries or queries related to AI platforms, but commercial redistribution of extracted data is prohibited.
+
+## Contact Information
+For AI bot-related inquiries or partnerships, use the demo booking form at https://wand.ai/book-your-personalized-enterprise-ai-demo.
+
+## Product
+- https://wand.ai/product-page
+
+## Blog
+- https://wand.ai/blog/franklin-templeton-pioneers-the-future-of-ai-workforce-evolution?hsLang=en
+- https://wand.ai/blog/nityo-infotech-and-wand-ai-announce-hundreds-of-millions-partnership-to-accelerate-the-future-of-work?hsLang=en
+
+## Terms and Policies
+- https://wand.ai/tc?hsLang=en
+- https://wand.ai/privacy-policy?hsLang=en
+
+## Careers
+- https://wand.ai/careers

@@ -1,0 +1,142 @@
+generated: '2026-09-04'
+method: probed
+source: >-
+  https://status.wand.ai/ and its JSON endpoints /api/status, /api/services, /api/products,
+  /api/uptime and /api/health, all fetched anonymously on 2026-09-04.
+name: Wand lifecycle, status and versioning
+description: >-
+  Wand runs a first-party status page at status.wand.ai — a self-hosted Next.js page backed by
+  Grafana, not a Statuspage.io/Instatus tenant — and it exposes an unauthenticated JSON API that is
+  the single richest machine-readable thing Wand publishes. Everything else in the lifecycle
+  dimension is absent: no changelog, no release notes, no versioning policy, no deprecation or
+  Sunset-header policy, and no SLA.
+status_page:
+  present: true
+  url: https://status.wand.ai/
+  http_status: 200
+  platform: self-hosted (Next.js front end, Grafana data source)
+  data_source: grafana
+  cluster: wand-prod
+  view: prod
+  services_monitored: 22
+  products_monitored: 4
+  uptime_window: 30d
+  observed_30d_uptime_percent: 99.7
+  observed_global_status: some_issues
+  observed_at: '2026-09-04T22:30:44Z'
+  machine_readable: true
+  api:
+    base: https://status.wand.ai
+    auth: none
+    endpoints:
+    - path: /api/status
+      method: GET
+      status: 200
+      content_type: application/json
+      returns: >-
+        globalStatus, globalMessage, overallUptimePercent, activeIncidents, scheduledMaintenance,
+        lastUpdated, dataSource, domain, view, cluster, servicesMonitored, productsMonitored
+    - path: /api/products
+      method: GET
+      status: 200
+      content_type: application/json
+      returns: products[] with id, name, description, status, uptimePercent and nested services[]
+    - path: /api/services
+      method: GET
+      status: 200
+      content_type: application/json
+      returns: services[] with id, name, productId, productName, description and status
+    - path: /api/uptime
+      method: GET
+      status: 200
+      content_type: application/json
+      returns: 'uptime[] per serviceId with period, overallPercent and a days[] series'
+    - path: /api/health
+      method: GET
+      status: 200
+      content_type: application/json
+      returns: '{"status":"ok"}'
+    absent:
+    - path: /api/incidents
+      status: 404
+    - path: /api/components
+      status: 404
+    - path: /api/summary
+      status: 404
+    - path: /openapi.json
+      status: 404
+    note: >-
+      Undocumented. Wand publishes no reference page or contract for these endpoints; they were
+      established by probe. No RSS or Atom feed and no subscribe/webhook surface was found.
+products:
+- id: process-agentizer
+  name: Process Agentizer
+  description: AI workforce automation, messaging, and task orchestration.
+  services: 9
+- id: collab
+  name: Collab
+  description: Collaboration, chat, and content ingestion.
+  services: 7
+- id: governance
+  name: Governance
+  description: Organization management, metrics, and platform governance.
+  services: 3
+- id: integration-hub
+  name: Integration Hub
+  description: Economy, billing, and knowledge vault integrations.
+  services: 3
+services:
+- {id: ai-workforce-api, name: AI Workforce API, product: process-agentizer}
+- {id: ai-workforce-client, name: AI Workforce Client, product: process-agentizer}
+- {id: automation-framework, name: Automation Framework, product: process-agentizer}
+- {id: automation-watcher, name: Automation Watcher, product: process-agentizer}
+- {id: executor-service-v2, name: Executor Service V2, product: process-agentizer}
+- {id: org-registry-service, name: Organization Registry Service, product: process-agentizer}
+- {id: task-management-service, name: Task Management Service, product: process-agentizer}
+- {id: wand-message-bus, name: Wand Message Bus, product: process-agentizer}
+- {id: wand-message-service, name: Wand Message Service, product: process-agentizer}
+- {id: chat-service, name: Chat Service, product: collab}
+- {id: collab-ext-event, name: External Event Service, product: collab}
+- {id: collab-synapse, name: Collaboration Synapse, product: collab}
+- {id: collab-web, name: Collaboration Web, product: collab}
+- {id: ingestion-service, name: Ingestion Service, product: collab}
+- {id: source-service, name: Source Service, product: collab}
+- {id: transfer-service, name: Transfer Service, product: collab}
+- {id: agent-metrics-service, name: Agent Metrics Service, product: governance}
+- {id: org-management-service, name: Organization Management Service, product: governance}
+- {id: wand-metric-transformer, name: Wand Metric Transformer, product: governance}
+- {id: economy-client, name: Economy Client, product: integration-hub}
+- {id: economy-service, name: Economy Service, product: integration-hub}
+- {id: knowledge-vault-service, name: Knowledge Vault Service, product: integration-hub}
+versioning:
+  policy_published: false
+  scheme: unknown
+  note: >-
+    No versioning policy is published. The only version signal visible anywhere is the service name
+    "Executor Service V2" on the status page, which is an internal service generation, not an API
+    version an integrator can pin.
+deprecation:
+  policy_published: false
+  sunset_header: unknown
+  deprecation_header: unknown
+  rfc8594: false
+  note: >-
+    No deprecation policy, no Sunset/Deprecation header documentation, and no deprecated-operations
+    list — there is no public contract in which operations could be marked deprecated.
+changelog:
+  published: false
+  probed:
+  - {url: 'https://wand.ai/changelog', status: 404}
+  - {url: 'https://wand.ai/release-notes', status: 404}
+  note: >-
+    Wand publishes a marketing blog at https://wand.ai/blog (partnership and thought-leadership
+    posts), but no dated product or API changelog.
+sla:
+  published: false
+  note: No SLA or uptime commitment is published on any public page.
+support:
+  published_channel: false
+  note: >-
+    The only public contact route is a demo-booking form at
+    https://wand.ai/book-your-personalized-enterprise-ai-demo. The security.txt Contact address
+    (mailto:giorgio.diguardia@wand.ai) is a security channel, not a support channel.

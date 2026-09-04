@@ -64,5 +64,32 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Wand is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
+Wand (Wand Synthesis AI, Inc.) is a Palo Alto, California enterprise software company, founded in
+2022 by Rotem Alaluf, that builds agentic labor infrastructure — an operating system for hybrid
+workforces in which AI agents are managed, executed and created as trusted team members alongside
+human employees. Its four published product areas are Process Agentizer, Collab, Governance and
+Integration Hub, offered on-premise, in a private cloud, or hosted.
+
+## What this profile could reach
+
+Wand publishes **no developer portal, no API reference, and no machine-readable contract**. Its
+platform API — named "AI Workforce API" in Wand's own status feed — sits at `api.wand.ai` behind an
+enterprise sales gate; every probed path returned HTTP 503 on 2026-09-04. No OpenAPI, Swagger,
+GraphQL SDL, AsyncAPI, gRPC/Protobuf or WSDL was found on any Wand host.
+
+What Wand *does* publish, and what this repository captures verbatim or by probe:
+
+| Surface | Where | Artifact |
+|---|---|---|
+| `llms.txt` | https://wand.ai/llms.txt | `llms/wand-ai-llms.txt` |
+| RFC 9116 `security.txt` | `auth.`/`api.`/`status.wand.ai` | `well-known/wand-ai-security.txt` |
+| OpenID Connect discovery (Keycloak) | https://auth.wand.ai/realms/master/.well-known/openid-configuration | `well-known/wand-ai-openid-configuration.json` |
+| Public JSON status API (5 endpoints, 4 products, 22 services) | https://status.wand.ai/api/status | `lifecycle/wand-ai-lifecycle.yml` |
+
+No A2A agent card, no MCP server, no `/.well-known/api-catalog`, no SDK on any package registry, no
+pricing, no changelog, and no documented rate limits.
+
+- https://wand.ai/
+- https://status.wand.ai/
+- https://github.com/wand-ai
 - https://www.hiive.com/securities/wand-ai-stock
