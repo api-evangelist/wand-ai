@@ -16,7 +16,7 @@ image: https://wand.ai/hubfs/logo.png
 url: https://raw.githubusercontent.com/api-evangelist/wand-ai/refs/heads/main/apis.yml
 specificationVersion: '0.20'
 created: '2026-09-04'
-modified: '2026-09-04'
+modified: '2026-10-06'
 tags:
 - Company
 - Artificial Intelligence
@@ -119,6 +119,8 @@ apis:
   - type: Authentication
     url: authentication/wand-ai-authentication.yml
 common:
+- url: https://wand.ai/blog/rss.xml
+  type: BlogRSS
 - type: DomainSecurity
   url: security/wand-ai-domain-security.yml
 - type: Website
