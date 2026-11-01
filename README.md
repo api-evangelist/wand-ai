@@ -64,32 +64,110 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Wand (Wand Synthesis AI, Inc.) is a Palo Alto, California enterprise software company, founded in
-2022 by Rotem Alaluf, that builds agentic labor infrastructure — an operating system for hybrid
-workforces in which AI agents are managed, executed and created as trusted team members alongside
-human employees. Its four published product areas are Process Agentizer, Collab, Governance and
-Integration Hub, offered on-premise, in a private cloud, or hosted.
+Wand (Wand Synthesis AI, Inc.) is a Palo Alto, California enterprise software company, founded in 2022 by Rotem Alaluf, that builds what it calls agentic labor infrastructure — an operating system for hybrid workforces in which AI agents are managed, executed and created as trusted team members alongside human employees. Its four published product areas are Process Agentizer (workforce automation, messaging and task orchestration), Collab (collaboration, chat and content ingestion), Governance (organization management and metrics) and Integration Hub (economy, billing and knowledge-vault integrations), offered on-premise, in a private cloud, or hosted. Wand publishes no developer portal, API reference or machine-readable contract; its platform API — named "AI Workforce API" in its own status feed — sits behind an enterprise sales gate at api.wand.ai. The public surfaces reached here are a JSON status API, a Keycloak OpenID Connect discovery document, a security.txt, and an llms.txt.
 
-## What this profile could reach
+**Areas:** Company · Artificial Intelligence · AI Agents · Enterprise Software · Workforce Automation · Orchestration · Process Automation · Collaboration · Governance
 
-Wand publishes **no developer portal, no API reference, and no machine-readable contract**. Its
-platform API — named "AI Workforce API" in Wand's own status feed — sits at `api.wand.ai` behind an
-enterprise sales gate; every probed path returned HTTP 503 on 2026-09-04. No OpenAPI, Swagger,
-GraphQL SDL, AsyncAPI, gRPC/Protobuf or WSDL was found on any Wand host.
+## Wand on APIs.io
 
-What Wand *does* publish, and what this repository captures verbatim or by probe:
+Everything profiled for Wand is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/wand-ai/](https://apis.io/providers/wand-ai/)** — or go straight to one of the APIs or properties below.
 
-| Surface | Where | Artifact |
-|---|---|---|
-| `llms.txt` | https://wand.ai/llms.txt | `llms/wand-ai-llms.txt` |
-| RFC 9116 `security.txt` | `auth.`/`api.`/`status.wand.ai` | `well-known/wand-ai-security.txt` |
-| OpenID Connect discovery (Keycloak) | https://auth.wand.ai/realms/master/.well-known/openid-configuration | `well-known/wand-ai-openid-configuration.json` |
-| Public JSON status API (5 endpoints, 4 products, 22 services) | https://status.wand.ai/api/status | `lifecycle/wand-ai-lifecycle.yml` |
+### APIs (3)
 
-No A2A agent card, no MCP server, no `/.well-known/api-catalog`, no SDK on any package registry, no
-pricing, no changelog, and no documented rate limits.
+- [Wand Status API](https://apis.io/apis/wand-ai/status-api/) — A public, unauthenticated JSON API served by the Wand platform status page. It reports overall platform health, the four Wand products and the twenty-two…
+- [Wand Identity (OpenID Connect)](https://apis.io/apis/wand-ai/identity/) — Wand runs Keycloak at auth.wand.ai as the identity provider for its platform. The master realm serves an anonymous OpenID Connect discovery document…
+- [Wand AI Workforce API](https://apis.io/apis/wand-ai/ai-workforce-api/) — The platform API behind Wand's Process Agentizer product, named "AI Workforce API" in Wand's own machine-readable status feed at…
 
-- https://wand.ai/
-- https://status.wand.ai/
-- https://github.com/wand-ai
-- https://www.hiive.com/securities/wand-ai-stock
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Wand Ai Authentication](https://apis.io/security/wand-ai/wand-ai-authentication/)
+- [Wand Ai Domain Security](https://apis.io/security/wand-ai/wand-ai-domain-security/)
+- [Wand Ai Vulnerability Disclosure](https://apis.io/security/wand-ai/wand-ai-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Wand Ai Scopes](https://apis.io/scopes/wand-ai/wand-ai-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Wand Ai Plans Pricing](https://apis.io/plans/wand-ai/wand-ai-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Wand Ai Rate Limits](https://apis.io/rate-limits/wand-ai/wand-ai-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://wand.ai/)
+- [Blog](https://wand.ai/blog)
+- [Terms of service](https://wand.ai/tc)
+- [Privacy policy](https://wand.ai/privacy-policy)
+- [GitHub](https://github.com/wand-ai)
+- [Status](https://status.wand.ai/)
+
+## API Evangelist rating
+
+**Kin Score 24.2** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 14.3 |
+| Access clarity | 21.1 |
+
+**Agent readiness 17.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+
+**Regulatory alignment 37.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/wand-ai/](https://apis.io/providers/wand-ai/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Wand: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/wand-ai/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
